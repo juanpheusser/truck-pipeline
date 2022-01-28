@@ -1,0 +1,40 @@
+logging:
+  version: 1
+  formatters:
+    logistic:
+      format: "Logistic Transformer - %(asctime)s - %(levelname)s - %(message)s"
+  handlers:
+    console:
+      class: logging.StreamHandler
+      formatter: logistic
+      level: DEBUG
+  root:
+    level: DEBUG
+    handlers: [console]
+
+samtech_api:
+  data_endpoint: "https://itruck.samtech.cl/Consultas/Ctrl/api/GetDataPeticion"
+  token_endpoint: "https://itruck.samtech.cl/Consultas/Ctrl/Token"
+  grant_type: "password"
+  content_type: "application/x-www-form-urlencoded"
+
+mongodb:
+  url: "mongodb+srv://iclogistic:iclogistic@cluster0.s7xjf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+  db: "development"
+  reportCollection: "reports"
+  truckCollection: "mainTrucks"
+
+transformer:
+  dtypes:
+    Patente: "str"
+    Ignicion: "bool"
+    Id_evento: "int32"
+    Fecha_gps: "datetime"
+    Latitud: "float64"
+    Longitud: "float64"
+    Altitud: "int32"
+    Velocidad: "int32"
+    Rumbo: "int32"
+  timeWindow:
+    unit: "minutes"
+    length: 600
